@@ -1,4 +1,6 @@
 import yolov5
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 # load model
 model = yolov5.load('keremberke/yolov5m-license-plate')
@@ -28,10 +30,17 @@ for img in images:
     categories = predictions[:, 5]
 
     # show detection bounding boxes on image
-    results.show()
+    print("----------------------------")
+    print(results)
 
     # save results into "results/" folder
-    results.save()
+    image = results.save()
+    #image = mpimg.imread(path)  # Replace 'path_to_image.jpg' with the path to your image file
+    # Display the image
+    plt.imshow(image)
+    plt.axis('off')  # Hide axes
+    plt.show()
+    print("----------------------------")
 
     print(predictions)
     print(boxes)
