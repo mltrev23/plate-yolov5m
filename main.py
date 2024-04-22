@@ -22,7 +22,6 @@ for img in images:
 
     # inference with test time augmentation
     results = model(img, augment=True)
-
     # parse results
     predictions = results.pred[0]
     boxes = predictions[:, :4] # x1, y1, x2, y2
@@ -31,15 +30,18 @@ for img in images:
 
     # show detection bounding boxes on image
     print("----------------------------")
-    print(results)
+    results.print()
+    results.show()
+    results.save()
+
 
     # save results into "results/" folder
     image = results.save()
     #image = mpimg.imread(path)  # Replace 'path_to_image.jpg' with the path to your image file
     # Display the image
-    plt.imshow(image)
-    plt.axis('off')  # Hide axes
-    plt.show()
+    #plt.imshow(image)
+    #plt.axis('off')  # Hide axes
+    #plt.show()
     print("----------------------------")
 
     print(predictions)
